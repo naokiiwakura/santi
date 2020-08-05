@@ -3,6 +3,9 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
 COPY *.sln .
 COPY Santi.Api/*.csproj Santi.Api/
+COPY Santi.Domain/*.csproj Santi.Domain/
+COPY Santi.Repository/*.csproj Santi.Repository/
+COPY Santi.Service/*.csproj Santi.Service/
 RUN dotnet restore
 COPY . .
 
