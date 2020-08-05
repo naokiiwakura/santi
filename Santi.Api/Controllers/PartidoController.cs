@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.WebEncoders.Testing;
 
 namespace Santi.Api.Controllers
 {
@@ -14,7 +15,10 @@ namespace Santi.Api.Controllers
 
         public IActionResult Get()
         {
-            return ["PT", "PSDB", "PSOL", "NOVO"];
+            var lista = new List<string>();
+            lista.Add("PT");
+            lista.Add("PSDB");
+            return Ok(lista);
         }
     }
 }
