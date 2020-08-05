@@ -13,7 +13,7 @@ namespace Santi.Api.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "teste", "teste", "teste", "teste", "teste", "teste", "teste", "teste", "teste", "teste"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
