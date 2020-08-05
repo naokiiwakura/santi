@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.WebEncoders.Testing;
+using Santi.Domain.Interfaces.Service;
 
 namespace Santi.Api.Controllers
 {
@@ -12,13 +13,15 @@ namespace Santi.Api.Controllers
     [ApiController]
     public class PartidoController : ControllerBase
     {
+        private IPartidoService _service;
 
-        public IActionResult Get()
+        public PartidoController(IPartidoService service)
         {
-            var lista = new List<string>();
-            lista.Add("PT");
-            lista.Add("PSDB");
-            return Ok(lista);
+            _service = service;
+        }
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await _service.ListarTodos());
         }
     }
 }

@@ -6,10 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Santi.Domain.Interfaces.Service;
+using Santi.Repository;
+using Santi.Service;
 
 namespace Santi.Api
 {
@@ -25,7 +29,12 @@ namespace Santi.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SantiContext>(options =>
+                    options.UseSqlite("Data Source=santi.db"));
+
             services.AddControllers();
+
+            services.AddScoped<IPartidoService, PartidoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
