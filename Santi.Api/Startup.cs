@@ -35,6 +35,7 @@ namespace Santi.Api
             services.AddControllers();
 
             services.AddScoped<IPartidoService, PartidoService>();
+            services.AddScoped<ICandidatoService, CandidatoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
