@@ -41,6 +41,14 @@ namespace Santi.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                SantiContext dbContext = serviceScope.ServiceProvider.GetRequiredService<SantiContext>();
+                dbContext.Database.Migrate();
+
+                // TODO: Use dbContext if you want to do seeding etc.
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
