@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Santi.Domain.Dto;
 using Santi.Domain.Interfaces.Service;
 
 namespace Santi.Api.Controllers
@@ -21,9 +22,9 @@ namespace Santi.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(string login, string senha)
+        public async Task<IActionResult> Post(LoginCandidatoDto login)
         {
-            return Ok(await _service.AutenticarCandidato(login, senha));
+            return Ok(await _service.AutenticarCandidato(login.Login, login.Senha));
         }
         
     }

@@ -32,7 +32,6 @@ namespace Santi.Service
         public async Task<Partido> AutenticarPartido(string login, string senha)
         {
             var partido = await _context.Partido
-                .Include(p => p.Candidatos)
                 .Where(p => p.Login == login && p.Senha == senha)
                 .FirstOrDefaultAsync();
 
