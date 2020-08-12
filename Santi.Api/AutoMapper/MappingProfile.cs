@@ -23,14 +23,15 @@ namespace Santi.Api.AutoMapper
         {
             CreateMap<SantinhoViewModel, SantinhoDto>();
             CreateMap<ColinhaViewModel, ColinhaDto>();
+            CreateMap<EstrategiaViewModel, EstrategiaDto>();
         }
 
         private void DtoToViewModel()
         {
             CreateMap<SantinhoDto, SantinhoViewModel>();
             CreateMap<ColinhaDto, ColinhaViewModel>();
+            CreateMap<EstrategiaDto, EstrategiaViewModel>();
         }
-
 
         private void DtoToModel()
         {

@@ -41,6 +41,7 @@ namespace Santi.Api
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<ISantinhoService, SantinhoService>();
             services.AddScoped<IColinhaService, ColinhaService>();
+            services.AddScoped<IEstrategiaService, EstrategiaService>();
 
 
 
