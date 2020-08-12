@@ -9,8 +9,8 @@ using Santi.Repository;
 namespace Santi.Repository.Migrations
 {
     [DbContext(typeof(SantiContext))]
-    [Migration("20200805021214_inicial")]
-    partial class inicial
+    [Migration("20200812030210_inicial_data")]
+    partial class inicial_data
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,8 @@ namespace Santi.Repository.Migrations
                     b.Property<DateTime>("DataAlteracao")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Foto")
-                        .HasColumnType("TEXT");
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("Login")
                         .HasColumnType("TEXT");
@@ -61,8 +61,7 @@ namespace Santi.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            DataAlteracao = new DateTime(2020, 8, 4, 22, 12, 13, 815, DateTimeKind.Local).AddTicks(8180),
-                            Foto = "",
+                            DataAlteracao = new DateTime(2020, 8, 11, 23, 2, 10, 48, DateTimeKind.Local).AddTicks(3373),
                             Login = "zeca13",
                             Nome = "José Miranda dos Santos",
                             NomeFantasia = "Zeca do PT",
@@ -156,10 +155,10 @@ namespace Santi.Repository.Migrations
                     b.Property<DateTime>("DataAlteracao")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Login")
-                        .HasColumnType("TEXT");
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("BLOB");
 
-                    b.Property<string>("Logo")
+                    b.Property<string>("Login")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
@@ -182,9 +181,8 @@ namespace Santi.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            DataAlteracao = new DateTime(2020, 8, 4, 22, 12, 13, 812, DateTimeKind.Local).AddTicks(4687),
+                            DataAlteracao = new DateTime(2020, 8, 11, 23, 2, 10, 45, DateTimeKind.Local).AddTicks(5919),
                             Login = "pt",
-                            Logo = "",
                             Nome = "Partido dos Trabalhadores",
                             Senha = "pt123",
                             Sigla = "PT",
@@ -193,9 +191,8 @@ namespace Santi.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            DataAlteracao = new DateTime(2020, 8, 4, 22, 12, 13, 813, DateTimeKind.Local).AddTicks(5384),
+                            DataAlteracao = new DateTime(2020, 8, 11, 23, 2, 10, 46, DateTimeKind.Local).AddTicks(3376),
                             Login = "mdb",
-                            Logo = "",
                             Nome = "Movimento Democrático Brasileiro",
                             Senha = "mdb123",
                             Sigla = "MDB",
@@ -204,9 +201,8 @@ namespace Santi.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            DataAlteracao = new DateTime(2020, 8, 4, 22, 12, 13, 813, DateTimeKind.Local).AddTicks(5454),
+                            DataAlteracao = new DateTime(2020, 8, 11, 23, 2, 10, 46, DateTimeKind.Local).AddTicks(3447),
                             Login = "psdb",
-                            Logo = "",
                             Nome = "Partido da Social Democracia Brasileira",
                             Senha = "psdb123",
                             Sigla = "PSDB",
@@ -247,7 +243,7 @@ namespace Santi.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CandidatoId")
+                    b.Property<int>("CandidatoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DataAlteracao")
@@ -256,8 +252,8 @@ namespace Santi.Repository.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Foto")
-                        .HasColumnType("TEXT");
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("Nome")
                         .HasColumnType("TEXT");
@@ -303,7 +299,9 @@ namespace Santi.Repository.Migrations
                 {
                     b.HasOne("Santi.Domain.Model.Candidato", "Candidato")
                         .WithMany("Santinhos")
-                        .HasForeignKey("CandidatoId");
+                        .HasForeignKey("CandidatoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

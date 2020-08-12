@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Santi.Repository.Migrations
 {
-    public partial class inicial : Migration
+    public partial class inicial_data : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,7 +51,7 @@ namespace Santi.Repository.Migrations
                     Sigla = table.Column<string>(nullable: true),
                     Login = table.Column<string>(nullable: true),
                     Senha = table.Column<string>(nullable: true),
-                    Logo = table.Column<string>(nullable: true)
+                    Foto = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -71,7 +71,7 @@ namespace Santi.Repository.Migrations
                     Numero = table.Column<int>(nullable: false),
                     Login = table.Column<string>(nullable: true),
                     Senha = table.Column<string>(nullable: true),
-                    Foto = table.Column<string>(nullable: true),
+                    Foto = table.Column<byte[]>(nullable: true),
                     PartidoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -144,10 +144,10 @@ namespace Santi.Repository.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     DataAlteracao = table.Column<DateTime>(nullable: false),
                     UsuarioAlteracao = table.Column<int>(nullable: false),
-                    CandidatoId = table.Column<int>(nullable: true),
                     Nome = table.Column<string>(nullable: true),
                     Descricao = table.Column<string>(nullable: true),
-                    Foto = table.Column<string>(nullable: true)
+                    Foto = table.Column<byte[]>(nullable: true),
+                    CandidatoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -157,28 +157,28 @@ namespace Santi.Repository.Migrations
                         column: x => x.CandidatoId,
                         principalTable: "Candidato",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "Partido",
-                columns: new[] { "Id", "DataAlteracao", "Login", "Logo", "Nome", "Senha", "Sigla", "UsuarioAlteracao" },
-                values: new object[] { 1, new DateTime(2020, 8, 4, 22, 12, 13, 812, DateTimeKind.Local).AddTicks(4687), "pt", "", "Partido dos Trabalhadores", "pt123", "PT", 0 });
+                columns: new[] { "Id", "DataAlteracao", "Foto", "Login", "Nome", "Senha", "Sigla", "UsuarioAlteracao" },
+                values: new object[] { 1, new DateTime(2020, 8, 11, 23, 2, 10, 45, DateTimeKind.Local).AddTicks(5919), null, "pt", "Partido dos Trabalhadores", "pt123", "PT", 0 });
 
             migrationBuilder.InsertData(
                 table: "Partido",
-                columns: new[] { "Id", "DataAlteracao", "Login", "Logo", "Nome", "Senha", "Sigla", "UsuarioAlteracao" },
-                values: new object[] { 2, new DateTime(2020, 8, 4, 22, 12, 13, 813, DateTimeKind.Local).AddTicks(5384), "mdb", "", "Movimento Democrático Brasileiro", "mdb123", "MDB", 0 });
+                columns: new[] { "Id", "DataAlteracao", "Foto", "Login", "Nome", "Senha", "Sigla", "UsuarioAlteracao" },
+                values: new object[] { 2, new DateTime(2020, 8, 11, 23, 2, 10, 46, DateTimeKind.Local).AddTicks(3376), null, "mdb", "Movimento Democrático Brasileiro", "mdb123", "MDB", 0 });
 
             migrationBuilder.InsertData(
                 table: "Partido",
-                columns: new[] { "Id", "DataAlteracao", "Login", "Logo", "Nome", "Senha", "Sigla", "UsuarioAlteracao" },
-                values: new object[] { 3, new DateTime(2020, 8, 4, 22, 12, 13, 813, DateTimeKind.Local).AddTicks(5454), "psdb", "", "Partido da Social Democracia Brasileira", "psdb123", "PSDB", 0 });
+                columns: new[] { "Id", "DataAlteracao", "Foto", "Login", "Nome", "Senha", "Sigla", "UsuarioAlteracao" },
+                values: new object[] { 3, new DateTime(2020, 8, 11, 23, 2, 10, 46, DateTimeKind.Local).AddTicks(3447), null, "psdb", "Partido da Social Democracia Brasileira", "psdb123", "PSDB", 0 });
 
             migrationBuilder.InsertData(
                 table: "Candidato",
                 columns: new[] { "Id", "DataAlteracao", "Foto", "Login", "Nome", "NomeFantasia", "Numero", "PartidoId", "Senha", "UsuarioAlteracao" },
-                values: new object[] { 1, new DateTime(2020, 8, 4, 22, 12, 13, 815, DateTimeKind.Local).AddTicks(8180), "", "zeca13", "José Miranda dos Santos", "Zeca do PT", 1313, 1, "zeca13", 0 });
+                values: new object[] { 1, new DateTime(2020, 8, 11, 23, 2, 10, 48, DateTimeKind.Local).AddTicks(3373), null, "zeca13", "José Miranda dos Santos", "Zeca do PT", 1313, 1, "zeca13", 0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Candidato_PartidoId",
