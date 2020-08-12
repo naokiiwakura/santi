@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Santi.Domain.Dto
 {
-    public class LoginPartidoDto : EntityBaseDto
+    public class EstrategiaDto : EntityBaseDto
     {
-        public string Login { get; set; }
-        public string Senha { get; set; }
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
     }
 }

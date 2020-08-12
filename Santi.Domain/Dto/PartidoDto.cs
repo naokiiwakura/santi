@@ -1,18 +1,19 @@
-﻿using Santi.Domain.Model.Base;
+﻿using Santi.Domain.Dto.BaseDto;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Santi.Domain.Model
+namespace Santi.Domain.Dto
 {
-    public class Partido : EntityBase
+    public class PartidoDto : EntityBaseDto
     {
         public string Nome { get; set; }
         public string Sigla { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
         public byte[] Foto { get; set; }
-        public virtual ICollection<PartidoFiliacao> Filiacoes { get; set; }
-        public virtual ICollection<Candidato> Candidatos { get; set; }
+        public List<PartidoFiliacaoDto> Filiacoes { get; set; }
+        public List<CandidatoDto> Candidatos { get; set; }
+
     }
 }

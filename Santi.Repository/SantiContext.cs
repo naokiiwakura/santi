@@ -33,7 +33,7 @@ namespace Santi.Repository
                     Sigla = "PT",
                     Login = "pt",
                     Senha = "pt123",
-                    Logo = ""
+                    Foto = null
                 },
                 new Partido
                 {
@@ -43,7 +43,7 @@ namespace Santi.Repository
                     Sigla = "MDB",
                     Login = "mdb",
                     Senha = "mdb123",
-                    Logo = ""
+                    Foto = null
                 },
                 new Partido
                 {
@@ -53,7 +53,7 @@ namespace Santi.Repository
                     Sigla = "PSDB",
                     Login = "psdb",
                     Senha = "psdb123",
-                    Logo = ""
+                    Foto = null
                 });
 
 
@@ -67,7 +67,7 @@ namespace Santi.Repository
                     Numero = 1313,
                     Login = "zeca13",
                     Senha = "zeca13",
-                    Foto = "",
+                    Foto = null,
                     PartidoId = 1
                 });
 

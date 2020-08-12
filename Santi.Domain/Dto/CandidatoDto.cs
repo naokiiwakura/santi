@@ -1,11 +1,11 @@
-﻿using Santi.Domain.Model.Base;
+﻿using Santi.Domain.Dto.BaseDto;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Santi.Domain.Model
+namespace Santi.Domain.Dto
 {
-    public class Candidato : EntityBase
+    public class CandidatoDto : EntityBaseDto
     {
         public string Nome { get; set; }
         public string NomeFantasia { get; set; }
@@ -14,8 +14,8 @@ namespace Santi.Domain.Model
         public string Senha { get; set; }
         public byte[] Foto { get; set; }
         public int PartidoId { get; set; }
-        public virtual Partido Partido { get; set; }
-        public virtual ICollection<Colinha> Colinhas { get; set; }
-        public virtual ICollection<Santinho> Santinhos { get; set; }
+        public  PartidoDto Partido { get; set; }
+        public  List<ColinhaDto> Colinhas { get; set; }
+        public  List<SantinhoDto> Santinhos { get; set; }
     }
 }
