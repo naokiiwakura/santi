@@ -25,6 +25,7 @@ namespace Santi.Api.AutoMapper
             CreateMap<ColinhaViewModel, ColinhaDto>();
             CreateMap<EstrategiaViewModel, EstrategiaDto>();
             CreateMap<PartidoViewModel, PartidoDto>();
+            CreateMap<CandidatoViewModel, CandidatoDto>();
         }
 
         private void DtoToViewModel()
@@ -33,6 +34,7 @@ namespace Santi.Api.AutoMapper
             CreateMap<ColinhaDto, ColinhaViewModel>();
             CreateMap<EstrategiaDto, EstrategiaViewModel>();
             CreateMap<PartidoDto, PartidoViewModel>();
+            CreateMap<CandidatoDto, CandidatoViewModel>();
         }
 
         private void DtoToModel()
