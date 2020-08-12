@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Santi.Api.ViewModel;
 using Santi.Domain.Dto;
 using Santi.Domain.Interfaces.Service;
 
@@ -39,7 +40,7 @@ namespace Santi.Api.Controllers
 
         // POST api/<Santinho1Controller>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] ColinhaViewModel value)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +53,7 @@ namespace Santi.Api.Controllers
 
         // PUT api/<Santinho1Controller>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] ColinhaViewModel value)
         {
             if (!ModelState.IsValid)
             {

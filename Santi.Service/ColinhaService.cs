@@ -25,12 +25,12 @@ namespace Santi.Service
 
         public async Task<List<ColinhaDto>> ListartTodos()
         {
-            return _mapper.Map<List<ColinhaDto>>(await _context.Colinha.ToListAsync());
+            return _mapper.Map<List<ColinhaDto>>(await _context.Colinha.Include(p => p.Candidato).ToListAsync());
         }
 
         public async Task<ColinhaDto> BuscarPorId(int id)
         {
-            var colinha = _mapper.Map<ColinhaDto>(await _context.Colinha.FirstOrDefaultAsync());
+            var colinha = _mapper.Map<ColinhaDto>(await _context.Colinha.Include(p => p.Candidato).FirstOrDefaultAsync());
 
             if (colinha == null)
                 return null;

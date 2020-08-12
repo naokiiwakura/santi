@@ -1,8 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Santi.Domain.Model;
+using Santi.Domain.Model.Base;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Santi.Repository
 {
@@ -71,6 +75,44 @@ namespace Santi.Repository
                     PartidoId = 1
                 });
 
+
+
+
+
+        }
+
+
+        //Salvamento de data alteracao automatica
+        public override int SaveChanges()
+        {
+            var entries = ChangeTracker
+            .Entries()
+            .Where(e => e.Entity is EntityBase && (
+                    e.State == EntityState.Added
+                    || e.State == EntityState.Modified));
+
+            foreach (var entityEntry in entries)
+            {
+                ((EntityBase)entityEntry.Entity).DataAlteracao = DateTime.Now;
+            }
+
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        {
+            var entries = ChangeTracker
+            .Entries()
+            .Where(e => e.Entity is EntityBase && (
+                    e.State == EntityState.Added
+                    || e.State == EntityState.Modified));
+
+            foreach (var entityEntry in entries)
+            {
+                ((EntityBase)entityEntry.Entity).DataAlteracao = DateTime.Now;
+            }
+
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
     }
 }

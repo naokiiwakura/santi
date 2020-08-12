@@ -25,12 +25,12 @@ namespace Santi.Service
 
         public async Task<List<SantinhoDto>> ListartTodos()
         {
-            return _mapper.Map<List<SantinhoDto>>(await _context.Santinho.ToListAsync());
+            return _mapper.Map<List<SantinhoDto>>(await _context.Santinho.Include(p => p.Candidato).ToListAsync());
         }
 
         public async Task<SantinhoDto> BuscarPorId(int id)
         {
-            var santihno = _mapper.Map<SantinhoDto>(await _context.Santinho.FirstOrDefaultAsync());
+            var santihno = _mapper.Map<SantinhoDto>(await _context.Santinho.Include(p => p.Candidato).FirstOrDefaultAsync());
 
             if (santihno == null)
                 return null;
