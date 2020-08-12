@@ -6,26 +6,72 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Santi.Domain.Interfaces.Service;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Santi.Domain.Model;
 
 namespace Santi.Service
 {
     public class ColinhaService : IColinhaService
     {
 
-        private SantiContext _context;
-        public ColinhaService(SantiContext context)
+        private readonly SantiContext _context;
+        private readonly IMapper _mapper;
+        public ColinhaService(SantiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public Task<ColinhaDto> BuscarPorId(int id)
+        public async Task<List<ColinhaDto>> ListartTodos()
         {
-            throw new NotImplementedException();
+            return _mapper.Map<List<ColinhaDto>>(await _context.Colinha.ToListAsync());
         }
 
-        public Task<List<ColinhaDto>> ListartTodos()
+        public async Task<ColinhaDto> BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            var colinha = _mapper.Map<ColinhaDto>(await _context.Colinha.FirstOrDefaultAsync());
+
+            if (colinha == null)
+                return null;
+
+            return colinha;
         }
+
+        public async Task<ColinhaDto> Cadastrar(ColinhaDto dto)
+        {
+            var colinha = _mapper.Map<Colinha>(dto);
+
+            _context.Colinha.Add(colinha);
+
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<ColinhaDto>(colinha);
+        }
+
+        public async Task<ColinhaDto> Editar(int id, ColinhaDto dto)
+        {
+            var colinha = await _context.Colinha.FindAsync(id);
+            colinha = _mapper.Map(dto, colinha);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<ColinhaDto>(colinha);
+        }
+
+        public async Task<bool> Excluir(int id)
+        {
+            try
+            {
+                var colinha = await _context.Colinha.FindAsync(id);
+                _context.Remove(colinha);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        
     }
 }

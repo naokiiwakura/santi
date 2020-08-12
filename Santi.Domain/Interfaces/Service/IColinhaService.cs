@@ -10,5 +10,8 @@ namespace Santi.Domain.Interfaces.Service
     {
         Task<List<ColinhaDto>> ListartTodos();
         Task<ColinhaDto> BuscarPorId(int id);
+        Task<ColinhaDto> Cadastrar(ColinhaDto dto);
+        Task<ColinhaDto> Editar(int id, ColinhaDto dto);
+        Task<bool> Excluir(int id);
     }
 }

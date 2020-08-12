@@ -40,6 +40,7 @@ namespace Santi.Api
             services.AddScoped<ICandidatoService, CandidatoService>();
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<ISantinhoService, SantinhoService>();
+            services.AddScoped<IColinhaService, ColinhaService>();
 
 
 
