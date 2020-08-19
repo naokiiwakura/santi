@@ -34,6 +34,10 @@ namespace Santi.Api
             services.AddDbContext<SantiContext>(options =>
                     options.UseSqlite("Data Source=santi.db"));
 
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+                                                                     .AllowAnyMethod()
+                                                                      .AllowAnyHeader()));
+
             services.AddControllers();
 
             services.AddScoped<IPartidoService, PartidoService>();
@@ -77,6 +81,8 @@ namespace Santi.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("AllowAll");
 
             app.UseEndpoints(endpoints =>
             {

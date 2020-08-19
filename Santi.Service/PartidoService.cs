@@ -23,7 +23,7 @@ namespace Santi.Service
 
         public async Task<PartidoDto> BuscarPorId(int id)
         {
-            var partido = _mapper.Map<PartidoDto>(await _context.Partido.FirstOrDefaultAsync());
+            var partido = _mapper.Map<PartidoDto>(await _context.Partido.FindAsync(id));
 
             if (partido == null)
                 return null;

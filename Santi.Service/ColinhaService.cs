@@ -30,7 +30,7 @@ namespace Santi.Service
 
         public async Task<ColinhaDto> BuscarPorId(int id)
         {
-            var colinha = _mapper.Map<ColinhaDto>(await _context.Colinha.Include(p => p.Candidato).FirstOrDefaultAsync());
+            var colinha = _mapper.Map<ColinhaDto>(await _context.Colinha.FindAsync(id));
 
             if (colinha == null)
                 return null;

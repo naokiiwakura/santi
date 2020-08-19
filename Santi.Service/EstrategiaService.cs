@@ -23,7 +23,7 @@ namespace Santi.Service
 
         public async Task<EstrategiaDto> BuscarPorId(int id)
         {
-            var estrategia = _mapper.Map<EstrategiaDto>(await _context.Estrategia.FirstOrDefaultAsync());
+            var estrategia = _mapper.Map<EstrategiaDto>(await _context.Estrategia.FindAsync(id));
 
             if (estrategia == null)
                 return null;

@@ -26,7 +26,7 @@ namespace Santi.Service
 
         public async Task<CandidatoDto> BuscarPorId(int id)
         {
-            var candidato = _mapper.Map<CandidatoDto>(await _context.Candidato.FirstOrDefaultAsync());
+            var candidato = _mapper.Map<CandidatoDto>(await _context.Candidato.FindAsync(id));
 
             if (candidato == null)
                 return null;
